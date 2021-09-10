@@ -1,6 +1,6 @@
 <h1>Table of all Stack Exchange Badge IDs</h1>
 
-You have probably come from the [wiki post about this]([INSERT LINK TO WIKI POST HERE](https://meta.stackexchange.com/questions/369665/is-there-a-table-of-badge-ids-for-all-stack-exchange-sites/)). In this README
+You have probably come from the [wiki post about this](https://meta.stackexchange.com/questions/369665/is-there-a-table-of-badge-ids-for-all-stack-exchange-sites/). In this README
 you'll learn... 
 
 * ...how to use the tables.
