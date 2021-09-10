@@ -35,6 +35,8 @@ This is for contributing the code I provided rewritten in another language, sinc
 * With a decent internet connection, it has to run in less than 10 minutes.
 * Output has to be comma-delimited/CSV.
 
+Another thing that would be very handy would be conversion between different file formats, so the user doesn't have to do that every time the table changes.
+
 <h3>Tables</h3>
 
 This is in case...
