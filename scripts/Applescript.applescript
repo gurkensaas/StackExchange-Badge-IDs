@@ -17,7 +17,7 @@ try --the try statement in Applescript is the same as in Javascript where errors
 		tell theTab --This further specifies the tab where the sites section of stackexchange.com was opened.
 			set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
 			--this returns the URL's to all stackexchange sites.
-			repeat until ((count of siteLinks) > 100) --repeat until is the same as while not and count is the same as len(array) or array.length. It sometimes happens that it will only retrieve a few sites.
+			repeat until ((count of siteLinks) > 150) --repeat until is the same as while not and count is the same as len(array) or array.length. It sometimes happens that it will only retrieve a few sites.
 				delay 0.5
 				set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
 				--here we assign the same thing as above to check if the site has finished loading.
@@ -31,7 +31,7 @@ on error --Here is why we used a try statement at the very top. If you don't hav
 		set URL of tab 1 of theWindow to "https://stackexchange.com/sites?view=list"
 		tell tab 1 of theWindow --This targets the first tab of a new window we just made. In this tab, it is going to get the URL's to all sites like above.
 			set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
-			repeat until ((count of siteLinks) > 100)
+			repeat until ((count of siteLinks) > 150)
 				set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
 				delay 0.5
 			end repeat
@@ -49,8 +49,8 @@ tell application "Google Chrome" to tell its front window
 		tell theTab
 			set theBadgeLinks to (execute javascript "var badges = document.getElementsByClassName('badge m0'); badges = [...badges].map(el => el.getAttribute('href'));") as list
 			--Here it is getting all URLs to badges.
-			repeat until ((count of theBadgeLinks) is not equal to 0) --In this loop it is using the same trick as above to check if the site has finished loading
-				delay 0.25
+			repeat until ((count of theBadgeLinks) > 80) --In this loop it is using the same trick as above to check if the site has finished loading
+				delay 0.3
 				set theBadgeLinks to (execute javascript "var badges = document.getElementsByClassName('badge m0'); badges = [...badges].map(el => el.getAttribute('href'));") as list
 			end repeat
 		end tell
@@ -143,5 +143,5 @@ on getMetaSites(theLinks)
 		end if
 	end repeat
 	set text item delimiters of AppleScript to prevTIDs --Here we reset the text item delimiters.
-	return metaLinks 
+	return metaLinks
 end getMetaSites
