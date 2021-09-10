@@ -1,6 +1,6 @@
 <h1>Table of all Stack Exchange Badge IDs</h1>
 
-You have probably come from the [wiki post about this]([INSERT LINK TO WIKI POST HERE](https://meta.stackexchange.com/questions/369665/is-there-a-table-of-badge-ids-for-all-stack-exchange-sites/)). In this README
+You have probably come from the [wiki post about this](https://meta.stackexchange.com/questions/369665/is-there-a-table-of-badge-ids-for-all-stack-exchange-sites/). In this README
 you'll learn... 
 
 * ...how to use the tables.
@@ -32,7 +32,7 @@ This is for contributing the code I provided rewritten in another language, sinc
 
 * A decent documentation.
 * A decent compatibility, both with Operating Systems and Browsers.
-* With a decent internet connection, it has to run in less than 5 minutes.
+* With a decent internet connection, it has to run in less than 10 minutes.
 * Output has to be comma-delimited/CSV.
 
 <h3>Tables</h3>
@@ -40,6 +40,7 @@ This is for contributing the code I provided rewritten in another language, sinc
 This is in case...
 
 * ...a new badge gets added.
+* ...a new site gets added to the [sites section to stackexchange](https://stackexchange.com/sites)
 * ...the badge system changes.
 * ...you find an error in an existing table.
 
