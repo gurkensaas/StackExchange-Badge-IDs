@@ -39,6 +39,8 @@ on error --Here is why we used a try statement at the very top. If you don't hav
 	end tell
 end try
 
+set siteLinks to siteLinks & getMetaSites(siteLinks) --This adds the meta sites to the rest of the sites (see function below for more documentation.)
+
 tell application "Google Chrome" to tell its front window
 	set theBadges to {}
 	set theBadgeIDs to {} --Here I declare two empty lists/arrays where the data is going to be stored.
@@ -122,3 +124,24 @@ on replaceText(find, replace, subject)
 	set text item delimiters of AppleScript to prevTIDs
 	return subject
 end replaceText
+
+on getMetaSites(theLinks)
+	set prevTIDs to text item delimiters of AppleScript --This stores the previous text item delimters so we can reset them after the function is called.
+	set metaLinks to {} --This is the list that is getting returned in the end.
+	set sitesWithoutMeta to {"https://stackapps.com", "https://meta.stackexchange.com"} --These sites don't have a meta site.
+	repeat with i from 1 to count of theLinks --Here we iterate over all links that we took as input.
+		if sitesWithoutMeta does not contain item i of theLinks then --Here we check if the site has a meta.
+			set AppleScript's text item delimiters to "." --This step is essential for splitting sub-domain, domain and top-level domain of the links.
+			set theItems to text items of item i of theLinks --Here we split by periods.
+			if (count of theItems) is equal to 2 then --Here we check if the site has a sub-domain.
+				set AppleScript's text item delimiters to ""
+				set end of metaLinks to characters 1 thru 8 of item 1 of theItems & "meta." & characters 9 thru (count of characters of (item 1 of theItems)) of item 1 of theItems & "." & item 2 of theItems as string
+				--This mess adds the meta into the URL.
+			else if (count of theItems) is equal to 3 then
+				set end of metaLinks to item 1 of theItems & ".meta." & items 2 thru 3 of theItems as string --It's quite a lot simpler if the URL has a sub-domain.
+			end if
+		end if
+	end repeat
+	set text item delimiters of AppleScript to prevTIDs --Here we reset the text item delimiters.
+	return metaLinks 
+end getMetaSites
