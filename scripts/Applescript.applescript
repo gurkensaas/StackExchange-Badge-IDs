@@ -42,10 +42,11 @@ end try
 set siteLinks to siteLinks & getMetaSites(siteLinks) --This adds the meta sites to the rest of the sites (see function below for more documentation.)
 
 tell application "Google Chrome" to tell its front window
+	set theTab to make new tab --Here we assign a variable to a tab that we are going to use for every single site.
 	set theBadges to {}
 	set theBadgeIDs to {} --Here I declare two empty lists/arrays where the data is going to be stored.
 	repeat with siteLink in siteLinks --Applescript repeat with loops are like for loops in other languages. Here it is looping over every stackexchange URL.
-		set theTab to make new tab with properties {URL:siteLink & "/help/badges/"} --Here it is opening the current URL where the badges are on said site.
+		set URL of theTab to siteLink --Here we change the URL of theTab to the badge section of the new network.
 		tell theTab
 			set theBadgeLinks to (execute javascript "var badges = document.getElementsByClassName('badge m0'); badges = [...badges].map(el => el.getAttribute('href'));") as list
 			--Here it is getting all URLs to badges.
@@ -79,7 +80,6 @@ tell application "Google Chrome" to tell its front window
 				end repeat
 			end try
 		end repeat
-		close theTab --Here we close the tab containing the badges section of the current network.
 		repeat with k from 1 to count of theBadgeIDs
 			set standard to count of item 1 of theBadgeIDs
 			if (count of item k of theBadgeIDs) < standard then set end of item k of theBadgeIDs to 0 --Here we check if all list are as long as the first list and if not, we populate the end with 0's
