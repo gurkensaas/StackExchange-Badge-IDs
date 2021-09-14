@@ -28,7 +28,7 @@ For this repository, there are two types of contributing:
 
 <h3>Code</h3>
 
-This is for contributing the code I provided rewritten in another language, since AppleScript has a relatively low compatibility. I tried my best to document the code to make it easy for other people to write it in another language. Some requirements are:
+This is for contributing the code I provided rewritten in another language, since AppleScript has a relatively low compatibility. I am currently working on a version using selenium in python. I tried my best to document the code to make it easy for other people to write it in another language. Some requirements are:
 
 * A decent documentation.
 * A decent compatibility, both with Operating Systems and Browsers.
