@@ -5,7 +5,7 @@ you'll learn...
 
 * ...how to use the tables.
 * ...how you can help me.
-* ...some of my personal thoughts.
+* ...some of my thoughts.
 
 <h2>Tables</h2>
 
@@ -28,14 +28,14 @@ For this repository, there are two types of contributing:
 
 <h3>Code</h3>
 
-This is for contributing the code I provided rewritten in another language, since AppleScript has a relatively low compatibility. I am currently working on a version using selenium in python. I tried my best to document the code to make it easy for other people to write it in another language. Some requirements are:
+This is for contributing the code I provided rewritten in another language since AppleScript has relatively low compatibility. I am currently working on a version using selenium in python and potentially a version in JavaScript, which would also use selenium. Please, before trying to write anything, contact me through any means possible. I tried my best to document the code to make it easy for other people to write it in another language. Some requirements are:
 
 * A decent documentation.
 * A decent compatibility, both with Operating Systems and Browsers.
 * With a decent internet connection, it has to run in less than 10 minutes.
 * Output has to be comma-delimited/CSV.
 
-Another thing that would be very handy would be conversion between different file formats, so the user doesn't have to do that every time the table changes.
+Another thing that would be very handy would be a conversion between different file formats, so the user doesn't have to do that every time the table changes.
 
 <h3>Tables</h3>
 
@@ -50,4 +50,4 @@ You can run one of the scripts in the `scripts` directory. Converting to other f
 
 <h2>Personal Thoughts</h2>
 
-This project took comparatively long for what it really is. I got sick halfway through and then had a few nasty bugs which were really simple. I am happy to finally share this with the world, since I want to use it [myself](https://meta.stackexchange.com/questions/369097/is-there-any-real-order-for-badges-on-different-stack-exchange-sites). This apparently also bugs [other users](https://meta.stackexchange.com/questions/254605/can-we-have-a-working-route-if-we-use-the-id-from-the-badges-table). I knew I could do it and I did it. If you're asking why I took the HTML-fetching approach instead of something classy like the Stack Exchange API, it's because I don't really know how that works and it's language independent so even something like Stack Overflow en español couldn't stop me.
+This project took comparatively long for what it is. I got sick halfway through and then had a few nasty bugs which were simple. I am happy to finally share this with the world, since I want to use it [myself](https://meta.stackexchange.com/questions/369097/is-there-any-real-order-for-badges-on-different-stack-exchange-sites). This also bugs [other users](https://meta.stackexchange.com/questions/254605/can-we-have-a-working-route-if-we-use-the-id-from-the-badges-table). I knew I could do it and I did it. If you're asking why I took the HTML-fetching approach instead of something classy like the Stack Exchange API, it's because I don't know how that works and it's language-independent so even something like Stack Overflow en español couldn't stop me.
