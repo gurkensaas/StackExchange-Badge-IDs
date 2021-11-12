@@ -15,11 +15,11 @@ try --the try statement in Applescript is the same as in Javascript where errors
 		end if
 		set theTabs to tabs --we store the tabs of the front window here, because in the tell statement we targeted the front window.
 		tell theTab --This further specifies the tab where the sites section of stackexchange.com was opened.
-			set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
-			--this returns the URL's to all stackexchange sites.
+			set siteLinks to execute javascript "[...document.getElementsByClassName('lv-info')].map(el => el.children[0].children[0].getAttribute('href'));" as list
+			-- This returns the URL's to all stackexchange sites.
 			repeat until ((count of siteLinks) > 150) --repeat until is the same as while not and count is the same as len(array) or array.length. It sometimes happens that it will only retrieve a few sites.
-				delay 0.5
-				set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
+				delay 0.6
+				set siteLinks to execute javascript "[...document.getElementsByClassName('lv-info')].map(el => el.children[0].children[0].getAttribute('href'));" as list
 				--here we assign the same thing as above to check if the site has finished loading.
 			end repeat
 			if (count of theTabs) is not equal to 1 then close --Here is the reason why we assigned the tabs to a variable.
@@ -30,10 +30,10 @@ on error --Here is why we used a try statement at the very top. If you don't hav
 		set theWindow to make new window
 		set URL of tab 1 of theWindow to "https://stackexchange.com/sites?view=list"
 		tell tab 1 of theWindow --This targets the first tab of a new window we just made. In this tab, it is going to get the URL's to all sites like above.
-			set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
+			set siteLinks to execute javascript "[...document.getElementsByClassName('lv-info')].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
 			repeat until ((count of siteLinks) > 150)
-				set siteLinks to execute javascript "var links = document.getElementsByClassName('lv-info'); links = [...links].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
-				delay 0.5
+				set siteLinks to execute javascript "[...document.getElementsByClassName('lv-info')].map(el => el.children[0].children[0].getAttribute('href').toString());" as list
+				delay 0.6
 			end repeat
 		end tell
 	end tell
@@ -46,13 +46,13 @@ tell application "Google Chrome" to tell its front window
 	set theBadges to {}
 	set theBadgeIDs to {} --Here I declare two empty lists/arrays where the data is going to be stored.
 	repeat with siteLink in siteLinks --Applescript repeat with loops are like for loops in other languages. Here it is looping over every stackexchange URL.
-		set URL of theTab to siteLink --Here we change the URL of theTab to the badge section of the new network.
+		set URL of theTab to siteLink & "/help/badges" --Here we change the URL of theTab to the badge section of the new network.
 		tell theTab
-			set theBadgeLinks to (execute javascript "var badges = document.getElementsByClassName('badge m0'); badges = [...badges].map(el => el.getAttribute('href'));") as list
+			set theBadgeLinks to (execute javascript "[...= document.getElementsByClassName('badge m0')].map(el => el.getAttribute('href'));") as list
 			--Here it is getting all URLs to badges.
 			repeat until ((count of theBadgeLinks) > 80) --In this loop it is using the same trick as above to check if the site has finished loading
-				delay 0.3
-				set theBadgeLinks to (execute javascript "var badges = document.getElementsByClassName('badge m0'); badges = [...badges].map(el => el.getAttribute('href'));") as list
+				delay 0.5
+				set theBadgeLinks to (execute javascript "[...document.getElementsByClassName('badge m0')].map(el => el.getAttribute('href'));") as list
 			end repeat
 		end tell
 		set n to theBadges is not equal to {} and theBadgeIDs is not equal to {} --This is going to be true except for the first run.
